@@ -1,0 +1,118 @@
+{
+  "name": "with-async-props",
+  "version": "0.0.1",
+  "description": "A HoC in the style of Recompose for async rendering and props for react components",
+  "main": "dist/cjs/with-async-props",
+  "scripts": {
+    "precommit": "lint-staged",
+    "preversion": "npm test && npm run build",
+    "version": "git commit -am \"Update dist for release\" && git checkout -b release && git add -f dist/",
+    "postversion": "git push --tags && git checkout master && git branch -D release && git push",
+    "testee": "testee test/test.html --browsers firefox",
+    "test": "npm run eslint && npm run testee",
+    "eslint": "eslint --fix src test",
+    "release:patch": "npm version patch && npm run build && npm publish",
+    "release:minor": "npm version minor && npm run build && npm publish",
+    "release:major": "npm version major && npm run build && npm publish",
+    "build": "node build.js",
+    "start": "done-serve --static --develop --port 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BigAB/with-async-props.git"
+  },
+  "keywords": [
+    "react",
+    "higher-order-components"
+  ],
+  "author": "BigAB <bigab@live.ca> (http://bigab.net)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BigAB/with-async-props/issues"
+  },
+  "homepage": "https://github.com/BigAB/with-async-props#readme",
+  "module": "src/with-async-props",
+  "browser": "dist/global/with-async-props.js",
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "steal": {
+    "babelOptions": {
+      "presets": [
+        "es2015-no-commonjs",
+        "react",
+        "stage-0"
+      ],
+      "plugins": [
+        "transform-regenerator",
+        "transform-async-to-generator"
+      ]
+    },
+    "main": "with-async-props",
+    "configDependencies": [
+      "live-reload"
+    ],
+    "map": {
+      "chai": "chai/chai",
+      "babel-polyfill": "babel-polyfill/dist/polyfill"
+    },
+    "meta": {
+      "chai/chai": {
+        "format": "global"
+      },
+      "babel-polyfill/dist/polyfill": {
+        "format": "cjs"
+      }
+    },
+    "npmIgnore": [
+      "testee",
+      "generator-donejs",
+      "donejs-cli",
+      "steal-tools"
+    ],
+    "directories": {
+      "lib": "src"
+    },
+    "npmAlgorithm": "flat",
+    "plugins": [
+      "steal-css",
+      "steal-jsx"
+    ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-modules-systemjs": "^6.24.1",
+    "babel-plugin-transform-regenerator": "^6.24.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015-no-commonjs": "0.0.2",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "chai": "^4.0.2",
+    "done-serve": "^1.3.0",
+    "eslint": "^4.0.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-react": "^7.1.0",
+    "fs-extra": "^3.0.1",
+    "husky": "^0.14.1",
+    "lint-staged": "^4.0.0",
+    "prettier": "^1.5.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-test-renderer": "^15.6.1",
+    "regenerator-runtime": "^0.10.5",
+    "steal": "^1.5.4",
+    "steal-css": "^1.2.5",
+    "steal-mocha": "^1.0.0",
+    "steal-tools": "^1.3.5",
+    "testee": "^0.6.0"
+  },
+  "dependencies": {
+    "recompose": "^0.23.5",
+    "symbol-observable": "^1.0.4"
+  }
+}
