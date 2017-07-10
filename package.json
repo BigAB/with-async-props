@@ -21,10 +21,7 @@
     "type": "git",
     "url": "git+https://github.com/BigAB/with-async-props.git"
   },
-  "keywords": [
-    "react",
-    "higher-order-components"
-  ],
+  "keywords": ["react", "higher-order-components"],
   "author": "BigAB <bigab@live.ca> (http://bigab.net)",
   "license": "MIT",
   "bugs": {
@@ -34,27 +31,15 @@
   "module": "src/with-async-props",
   "browser": "dist/global/with-async-props.js",
   "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.js": ["prettier --write", "git add"]
   },
   "steal": {
     "babelOptions": {
-      "presets": [
-        "es2015-no-commonjs",
-        "react",
-        "stage-0"
-      ],
-      "plugins": [
-        "transform-regenerator",
-        "transform-async-to-generator"
-      ]
+      "presets": ["es2015-no-commonjs", "react", "stage-0"],
+      "plugins": ["transform-regenerator", "transform-async-to-generator"]
     },
     "main": "with-async-props",
-    "configDependencies": [
-      "live-reload"
-    ],
+    "configDependencies": ["live-reload"],
     "map": {
       "chai": "chai/chai",
       "babel-polyfill": "babel-polyfill/dist/polyfill"
@@ -67,20 +52,16 @@
         "format": "cjs"
       }
     },
-    "npmIgnore": [
-      "testee",
-      "generator-donejs",
-      "donejs-cli",
-      "steal-tools"
-    ],
+    "npmIgnore": ["testee", "generator-donejs", "donejs-cli", "steal-tools"],
     "directories": {
       "lib": "src"
     },
     "npmAlgorithm": "flat",
-    "plugins": [
-      "steal-css",
-      "steal-jsx"
-    ]
+    "plugins": ["steal-css", "steal-jsx"]
+  },
+  "dependencies": {
+    "recompose": "^0.23.5",
+    "symbol-observable": "^1.0.4"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -110,9 +91,5 @@
     "steal-mocha": "^1.0.0",
     "steal-tools": "^1.3.5",
     "testee": "^0.6.0"
-  },
-  "dependencies": {
-    "recompose": "^0.23.5",
-    "symbol-observable": "^1.0.4"
   }
 }

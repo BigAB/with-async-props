@@ -1,7 +1,7 @@
 import React from "react";
 import ReactTestRenderer from "react-test-renderer";
 import { expect } from "chai";
-import withAsyncProps from "../src/with-async-props";
+import { withAsyncProps } from "../src/with-async-props";
 import "steal-mocha";
 import "babel-polyfill";
 
@@ -18,11 +18,7 @@ describe("with-async-props", () => {
     const div = renderer.toJSON();
     expect(div.props).to.deep.equal({ loading: true });
     deferred.resolve({ foo: "bar" });
-    // .then(asyncProps => {
-    //   expect(renderer.toJSON().props).to.deep.equal({ foo: "bar" });
-    //   done();
-    // })
-    // .catch(done);
+    // I wonder if there is a better way to test this -BigAB
     setImmediate(() => {
       expect(renderer.toJSON().props).to.deep.equal({ foo: "bar" });
       done();
