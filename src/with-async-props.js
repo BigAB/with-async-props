@@ -64,9 +64,12 @@ export const mapAsyncPropsStreamWithAsyncFn = (
                   observer[LAST_PROPS] = childProps;
                   observer[LAST_RESULT] = newProps;
                 })
-                .catch(reason =>
-                  observer.next(factory(mapErrorProps(childProps, reason)))
-                );
+                .catch(reason => {
+                  const newProps = mapErrorProps(childProps, reason);
+                  observer.next(factory(newProps));
+                  observer[LAST_PROPS] = childProps;
+                  observer[LAST_RESULT] = newProps;
+                });
               return observer;
             }
             observer.next(factory({ ...observer[LAST_RESULT], ...childProps }));
