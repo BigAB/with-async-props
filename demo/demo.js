@@ -24,29 +24,6 @@ import UsernameForm from "./username-form/username-form";
 import SuffixForm from "./suffix-form/suffix-form";
 import "babel-polyfill";
 
-function Deferred() {
-  let p, resolve, reject;
-  p = new Promise((res, rej) => {
-    resolve = res;
-    reject = rej;
-  });
-  p.resolve = resolve;
-  p.reject = reject;
-  return p;
-}
-
-function waitThenResolve(seconds, value) {
-  const d = Deferred();
-  setTimeout(() => d.resolve(value), seconds * 1000);
-  return d;
-}
-
-function waitThenReject(seconds, reason) {
-  const d = Deferred();
-  setTimeout(() => d.reject(reason), seconds * 1000);
-  return d;
-}
-
 const users = [
   {
     name: "Adam L Barrett",
@@ -66,6 +43,7 @@ const users = [
 ];
 
 async function fetchUser(username) {
+  // this is just faking a service or other asynchronous data fethching
   if (!username) {
     throw Error("Cannot fetch user without a username");
   }
@@ -73,9 +51,11 @@ async function fetchUser(username) {
     u => u.username.toLowerCase() === username.toLowerCase()
   );
   if (user === void 0) {
-    return waitThenReject(1.5, Error("404 - Username not found"));
+    return new Promise((res, rej) =>
+      setTimeout(() => rej(Error("404 - Username not found")), 1500)
+    );
   }
-  return waitThenResolve(1.5, user);
+  return new Promise(res => setTimeout(() => res(user), 1500));
 }
 
 const ErrorMessage = ({ error, children }) => {
