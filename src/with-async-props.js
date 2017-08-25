@@ -74,6 +74,12 @@ export const mapAsyncPropsStreamWithAsyncFn = (
             }
             observer.next(factory({ ...observer[LAST_RESULT], ...childProps }));
             observer[LAST_PROPS] = childProps;
+          },
+          error() {
+            // I wonder what makes this get called - BigAB
+          },
+          complete() {
+            // not sure what I need to to here - BigAB
           }
         });
 
