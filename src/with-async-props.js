@@ -1,8 +1,8 @@
 /* eslint no-console: 0 */
+import { createFactory } from "react";
 import $$observable from "symbol-observable";
 import {
   componentFromStreamWithConfig,
-  createEagerFactory,
   setDisplayName,
   wrapDisplayName,
   shallowEqual
@@ -44,7 +44,7 @@ export const mapAsyncPropsStreamWithAsyncFn = (
           rejectedProps ? { ...props, ...rejectedProps } : { ...props, reason };
 
   return BaseComponent => {
-    const factory = createEagerFactory(BaseComponent);
+    const factory = createFactory(BaseComponent);
 
     return componentFromStream(props$ => ({
       subscribe(observer) {
