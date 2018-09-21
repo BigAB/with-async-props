@@ -4,12 +4,13 @@ var fs = require("fs-extra");
 stealTools
   .export({
     steal: {
-      config: __dirname + "/package.json!npm"
+      config: `${__dirname}/package.json!npm`
     },
     outputs: {
-      "+cjs": {},
-      "+amd": {},
-      "+global-js": {}
+      "production+cjs": {
+        removeDevelopmentCode: true,
+        dest: `${__dirname}/dist/cjs`
+      }
     }
   })
   .then(function() {
