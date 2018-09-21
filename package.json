@@ -32,8 +32,7 @@
     "url": "https://github.com/BigAB/with-async-props/issues"
   },
   "homepage": "https://github.com/BigAB/with-async-props#readme",
-  "module": "src/with-async-props",
-  "browser": "dist/global/with-async-props.js",
+  "module": "dist/es6/with-async-props",
   "lint-staged": {
     "*.js": [
       "prettier --write",
